@@ -1,0 +1,45 @@
+:root,
+body.light {
+  --primary: rgb(0 57 220);
+  --on-primary: #ffffff;
+  --primary-container: rgb(68 101 255);
+  --on-primary-container: rgb(255 255 255);
+  /*
+  --secondary: #4959A6;
+  --on-secondary: #ffffff;
+  --secondary-container: #A7B4FF;
+  --on-secondary-container: #102371;
+  */
+  --secondary: #5a5d72;
+  --on-secondary: #ffffff;
+  --secondary-container: #dfe1f9;
+  --on-secondary-container: #171a2c;
+  --tertiary: #7e5260;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #ffd9e3;
+  --on-tertiary-container: #31101d;
+  --error: rgb(165 0 12);
+  --on-error: #ffffff;
+  --error-container: #E02825;
+  --on-error-container: #FFFFFF;
+  --background: #FBF8FF;
+  --on-background: #1A1B25;
+  --surface: #FBF8FF;
+  --on-surface: #1A1B25;
+  --surface-variant: #E0E1F6;
+  --on-surface-variant: #444656;
+  --outline: #747688;
+  --outline-variant: #C4C5D9;
+  --shadow: #000000;
+  --scrim: #000000;
+  --inverse-surface: #2E303A;
+  --inverse-on-surface: #F0EFFD;
+  --inverse-primary: #B9C3FF;
+  --surface-dim: #D9D9E6;
+  --surface-bright: #FBF8FF;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #F3F2FF;
+  --surface-container: #EDECFA;
+  --surface-container-high: #EDECFA;
+  --surface-container-highest: #E2E1EF
+}
