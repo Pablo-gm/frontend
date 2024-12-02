@@ -1,189 +1,239 @@
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="google" content="notranslate">
-    <title>Hello world</title>
-    <link href="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
-  </head>
-  <body class="">
-    <nav class="left drawer l">
-      <header>
-        <nav>
-          <img src="https://www.beercss.com/favicon.png" class="circle">
-          <h6>Cheers</h6>
-        </nav>
-      </header>
-      <a>
-        <i>home</i>
-        <div>Home</div>
-      </a>
-      <a>
-        <i>search</i>
-        <div>Search</div>
-      </a>
-      <a>
-        <i>inbox</i>
-        <div>Messages</div>
-      </a>
-      <a>
-        <i>list_alt</i>
-        <div>Control panel</div>
-      </a>
-      <div class="divider"></div>
-      <label>More</label>
-      <a>
-        <i>group</i>
-        <div>Groups</div>
-      </a>
-      <a>
-        <i>point_of_sale</i>
-        <div>Payment entry</div>
-      </a>
-      <a>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google" content="notranslate">
+  <title>Hello world</title>
+  <link href="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.js"></script>
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
+</head>
+
+<body class="light">
+  <header class=" fixed responsive max ">
+    <nav>
+      <img src="https://www.kaggle.com/static/images/site-logo.svg" class="logo">
+      
+      <h5 class="max">Start</h5>
+      <div class="field large prefix round fill active">
+        <i class="front">search</i>
+        <input placeholder="Search">
+        <menu class="min">
+          <div class="field large prefix suffix no-margin fixed">
+            <i class="front">arrow_back</i>
+            <input>
+            <i class="front">close</i>
+          </div>
+          <a class="row">
+            <i>history</i>
+            <div>Something</div>
+          </a>
+          <a class="row">
+            <i>history</i>
+            <div>Something</div>
+          </a>
+          <a class="row">
+            <i>history</i>
+            <div>Something</div>
+          </a>
+        </menu>
+      </div>
+      <button class="circle transparent">
+        <i>help</i>
+      </button>
+      <button class="fill">
+        <span>EN</span>
+        <i>arrow_drop_down</i>
+        <menu>
+          <a>Spanish</a>
+          <a>English</a>
+        </menu>
+      </button>
+      <button class="border small-round">
         <i>person</i>
-        <div>Teachers</div>
-      </a>  
-      <a>
-        <i>analytics</i>
-        <div>Stats</div>
-      </a>  
+        <span>ADMIN</span>
+        <i>arrow_drop_down</i>
+        <menu class="left no-wrap">
+          <a class="row">
+            <i>support_agent</i>
+            <span>Technical support</span>
+          </a>
+          <a class="row">
+            <i>school</i>
+            <span>Academy</span>
+          </a>
+          <hr>
+          <a class="row">
+            <i>logout</i>
+            <span>Log out</span>
+          </a>
+        </menu>
+      </button>
+
     </nav>
 
-    <nav class="left m">
-      <header>
-        <img src="https://www.beercss.com/favicon.png" class="circle">
-      </header>
-      <a>
-        <i>home</i>
-        <div>Home</div>
-      </a>
-      <a>
-        <i>search</i>
-        <div>Search</div>
-      </a>
-      <a>
-        <i>inbox</i>
-        <div>Messages</div>
-      </a>
-      <a>
-        <i>list_alt</i>
-        <div>Control panel</div>
-      </a>
-      <a>
-        <i>more_vert</i>
-        <div>More</div>
-      </a>
-    </nav>
 
-    <nav class="bottom s">
-      <a>
-        <i>home</i>
-      </a>
-      <a>
-        <i>search</i>
-      </a>
-      <a>
-        <i>mail</i>
-      </a>
-      <a>
-        <i>more_vert</i>
-      </a>
-    </nav>
-    <header class="fixed responsive max ">
-        <nav>
-          <button class="circle transparent">
-            <i>arrow_back</i>
-          </button>
-          <h5 class="max">Start</h5>
-          <div class="field large prefix round fill active">
-            <i class="front">search</i>
-            <input placeholder="Search">
-            <menu class="min">
-              <div class="field large prefix suffix no-margin fixed">
-                <i class="front">arrow_back</i>
-                <input>
-                <i class="front">close</i>
-              </div>
-              <a class="row">
-                <i>history</i>
-                <div>Something</div>
+
+    <div>
+      <div class="tabs min left-align">
+        <a class="active">Start</a>
+        <a>Control panel</a>
+        <a>Stats</a>
+        <a>Dashboard <div class="badge none">New</div></a>
+      </div>
+    </div>
+
+  </header>
+  <nav class="left drawer l">
+    <header>
+      <nav>
+        <button class="circle large transparent" data-ui="#menu-menu"><i>menu</i></button>
+        <img src="https://qzw.xeh.mybluehost.me/website_9bcef3bf/wp-content/uploads/2024/04/LogoAlgebraix72.webp#125" class="logo">
+      </nav>
+    </header>
+    <a>
+      <i>home</i>
+      <div>Home</div>
+    </a>
+    <a>
+      <i>search</i>
+      <div>Search</div>
+    </a>
+    <a>
+      <i>inbox</i>
+      <div>Messages</div>
+    </a>
+    <a>
+      <i>list_alt</i>
+      <div>Control panel</div>
+    </a>
+    <div class="divider"></div>
+    <label>More</label>
+    <a>
+      <i>group</i>
+      <div>Groups</div>
+    </a>
+    <a>
+      <i>point_of_sale</i>
+      <div>Payment entry</div>
+    </a>
+    <a>
+      <i>person</i>
+      <div>Teachers</div>
+    </a>
+    <a>
+      <i>analytics</i>
+      <div>Stats</div>
+    </a>
+  </nav>
+
+  <nav class="left m">
+    <header>
+      <img src="https://www.beercss.com/favicon.png" class="circle">
+    </header>
+    <a>
+      <i>home</i>
+      <div>Home</div>
+    </a>
+    <a>
+      <i>search</i>
+      <div>Search</div>
+    </a>
+    <a>
+      <i>inbox</i>
+      <div>Messages</div>
+    </a>
+    <a>
+      <i>list_alt</i>
+      <div>Control panel</div>
+    </a>
+    <a>
+      <i>more_vert</i>
+      <div>More</div>
+    </a>
+  </nav>
+
+  <nav class="bottom s">
+    <a>
+      <i>home</i>
+    </a>
+    <a>
+      <i>search</i>
+    </a>
+    <a>
+      <i>mail</i>
+    </a>
+    <a>
+      <i>more_vert</i>
+    </a>
+  </nav>
+
+
+
+
+  <main class="responsive">
+    <div class="grid large-space">
+      <div class="l8">
+        <h4>Pendientes</h4>
+        <div class="grid">
+          <div class="l6">
+            <h6 class="small bottom-margin small-margin">Last messages</h6>
+            <div class="bg-white small-elevate small-round">
+              <a class="row padding ">
+                <i class="size--25 green-color">account_circle</i>
+                <div class="max">
+                  <h6 class="small">Operator</h6>
+                  <div>Supporting text</div>
+                </div>
+                <label class="right-align">12 Nov<br><i class="tiny">attach_file</i></label>
               </a>
-              <a class="row">
-                <i>history</i>
-                <div>Something</div>
-              </a>
-              <a class="row">
-                <i>history</i>
-                <div>Something</div>
-              </a>
-            </menu>
+            </div>
+
+            
           </div>
-          <button class="circle transparent">
-            <i>help</i>
-          </button>
-          <button class="fill">
-            <span>EN</span>
-            <i>arrow_drop_down</i>
-            <menu>
-              <a>Spanish</a>
-              <a>English</a>
-            </menu>
-          </button>
-          <button class="border small-round">
-            <i>person</i>
-            <span>ADMIN</span>
-            <i>arrow_drop_down</i>
-            <menu class="left no-wrap">
-                <a class="row">
-                    <i>support_agent</i>
-                    <span>Technical support</span>
-                </a>
-                <a class="row">
-                    <i>school</i>
-                    <span>Academy</span>
-                </a>
-                <hr>
-                <a class="row">
-                    <i>logout</i>
-                    <span>Log out</span>
-                </a>
-            </menu>
-          </button>
-          
-        </nav>
-        <div>
-            <div class="tabs min left-align">
-              <a class="active">Start</a>
-              <a>Control panel</a>
-              <a>Stats</a>
-              <a>Dashboard <div class="badge none">New</div></a>
+          <div class="l6">
+            <h6 class="small bottom-margin small-margin">Last messages</h6>
+            <div class="bg-white small-elevate small-round">
+              <a class="row padding ">
+                <i class="size--25 green-color">account_circle</i>
+                <div class="max">
+                  <h6 class="small">Operator</h6>
+                  <div>Supporting text</div>
+                </div>
+                <label class="right-align">12 Nov<br><i class="tiny">attach_file</i></label>
+              </a>
             </div>
-            <div class="page padding active">
-              <h5>Start</h5>
-            </div>
-            <div class="page padding">
-              <h5>Control panel</h5>
-            </div>
-            <div class="page padding">
-              <h5>Stats</h5>
-            </div>
-            <div class="page padding">
-                <h5>Dashboard</h5>
-            </div>
+
+            
           </div>
-          
-      </header>
-    <main class="responsive">
-          <button>Button</button>
-          <button>
-            <i>home</i>
-            <span>Button</span>
-          </button>
-    </main>
-  </body>
+        </div>
+      </div>
+      <div class="l4">
+        <h4>Boletines</h4>
+        <article class="no-padding round">
+          <img class="responsive small top-round" src="/beer-and-woman.svg">
+          <div class="padding">
+            <h5>Title</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <nav>
+              <button>Button</button>
+            </nav>
+          </div>
+        </article>
+        
+      </div>
+    </div>
+    <h4>Pendientes</h4>
+    <button>Button</button>
+    <button>
+      <i>home</i>
+      <span>Button</span>
+    </button>
+  </main>
+</body>
+
 </html>
