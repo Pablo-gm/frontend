@@ -1,7 +1,139 @@
+:root{
+    --background: #dcebff;
+    --color: #575047;
+    --mountain-height: 20%;
+    --animation-seconds: 5s;
+}
+
 body {
     font-size: 22px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     line-height: 1.5;
-    background-color: #d8d9fd;
-    color: #120b77;
+    background-color: var(--background);
+    color: var(--color);
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	height: 0;
+	padding-top: 100%;
+	overflow: hidden;
+	perspective: 400px;
+}
+
+.container::after{
+    content: '';
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    background: var(--background);
+    opacity: 0.7;
+}
+
+.mountain {
+    background-color: var(--color);
+    width: var(--mountain-height);
+    height: var(--mountain-height);
+    position: absolute;
+    top: calc(50% - var(--mountain-height)/2);
+}
+
+.mountain::before{
+    content: '';
+    width: 102%;
+    height: 102%;
+    position: absolute;
+    left: -1%;
+    top: -1%;
+    background: var(--background);
+    animation: opacity var(--animation-seconds) linear infinite;
+    animation-delay: inherit;
+}
+
+.mountain:nth-of-type(even) {
+    right: 0;
+}
+
+/* Mountain animation */
+.mountain:nth-of-type(1){
+    animation: mountain2 var(--animation-seconds) calc(-1/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(2){
+    animation: mountain3 var(--animation-seconds) calc(-2/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(3){
+    animation: mountain4 var(--animation-seconds) calc(-3/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(4){
+    animation: mountain5 var(--animation-seconds) calc(-4/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(5){
+    animation: mountain6 var(--animation-seconds) calc(-5/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(6){
+    animation: mountain1 var(--animation-seconds) calc(-6/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(7){
+    animation: mountain2 var(--animation-seconds) calc(-7/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(8){
+    animation: mountain3 var(--animation-seconds) calc(-8/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(9){
+    animation: mountain4 var(--animation-seconds) calc(-9/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(10){
+    animation: mountain5 var(--animation-seconds) calc(-10/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(11){
+    animation: mountain6 var(--animation-seconds) calc(-11/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+.mountain:nth-of-type(12){
+    animation: mountain1 var(--animation-seconds) calc(-12/(10 - 3) * var(--animation-seconds) ) linear infinite;
+}
+
+@keyframes mountain1 {
+	0% { transform: rotate(45deg) translate3d(-130%, 130%, -300px) scale(.5); }
+	100% { transform: rotate(45deg) translate3d(100%, -100%, 0) scale(1); }
+}
+@keyframes mountain2 {
+	0% { transform: rotate(45deg) translate3d(120%, -120%, -300px) scale(.5); }
+	100% { transform: rotate(45deg) translate3d(-100%, 100%, 0) scale(1); }
+}
+
+@keyframes mountain3 {
+	0% { transform: rotate(45deg) translate3d(-110%, 110%, -300px) scale(.5); }
+	100% { transform: rotate(45deg) translate3d(100%, -100%, 0) scale(1); }
+}
+
+@keyframes mountain4 {
+	0% { transform: rotate(45deg) translate3d(110%, -110%, -300px) scale(.5); }
+	100% { transform: rotate(45deg) translate3d(-100%, 100%, 0) scale(1); }
+}
+
+@keyframes mountain5 {
+	0% { transform: rotate(45deg) translate3d(-150%, 150%, -300px) scale(.5); }
+	100% { transform: rotate(45deg) translate3d(100%, -100%, 0) scale(1); }
+}
+
+@keyframes mountain6 {
+	0% { transform: rotate(45deg) translate3d(150%, -150%, -300px) scale(.5); }
+	100% { transform: rotate(45deg) translate3d(-100%, 100%, 0) scale(1); }
+}
+
+@keyframes opacity { 
+    85%, 100% { opacity: 0; } 
 }
