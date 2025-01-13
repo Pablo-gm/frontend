@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .columns{
+        width: 100%;
+        columns: 3 300px;
+        column-rule: 2px solid #3a3a3a;
+        column-gap: 20px;
+    }
+    .columns p {
+        margin-top: 0;
+        background-color: beige;
+    }
+    h2 {
+        break-inside: avoid;
+        background-color: #2b2b2b;
+        color: white;
+    }
+    .quote{
+        font-size: 40px;
+        text-align: center;
+        color: #111; 
+        column-span: all;
+        margin: 10px; 
+    }
+</style>
+<body>
+    <h1>3 columns</h1>
+    <div class="columns">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, ea!</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, ea!</p>
+        <h2>New Title</h2>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, ea!</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, ea!</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, ea!</p>
+        <div class="quote">This fancy quote right here - Someone</div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, ea!</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, ea!</p>
+    </div>
+</body>
+</html>
