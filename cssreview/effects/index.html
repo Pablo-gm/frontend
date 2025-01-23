@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<style>
+body {
+    font-family: 'Fira Sans', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(53, 49, 49);
+}
+.netflix {
+    color: white;
+    -webkit-text-stroke: 5px crimson;
+    text-stroke: 5px crimson;
+    font-size: 8rem;
+    color: transparent;
+}
+
+.firstLetter{
+    color: rgb(235, 231, 223);
+    font-size: 3rem;
+    letter-spacing: .05em;
+}
+
+.firstLetter::first-letter{
+  font-size: 4rem;
+  color:#ff8A00;
+}
+
+.button{
+    padding: 0.75rem 1rem;
+    background: #ebb;
+    border-radius: 6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    border: none;
+}
+
+.rainbow{
+  animation: rainbow-animation 2000ms linear infinite;
+}
+
+@keyframes rainbow-animation {
+  to{
+    filter: hue-rotate(0deg);
+  }
+ from{
+    filter: hue-rotate(360deg);
+  }
+}
+
+.example-container{
+  color: #EAEAEA;
+  display: flex;
+  width: min(100%, 400px);
+}
+
+.sideways-text{
+  writing-mode: sideways-lr;
+  text-align: center;
+  color: #FF9422;
+}
+
+.gradient-object{
+  width: 250px;
+  height: 250px;
+  margin: 5rem;
+  border-radius: 2rem;
+  position: relative;
+  background-image: linear-gradient(to bottom right, rgb(48, 204, 243), rgb(71, 243, 149));
+}
+
+.gradient-object::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: linear-gradient(to bottom right, rgb(48, 204, 243), rgb(71, 243, 149));
+  filter: blur(1.5rem) brightness(1.5);
+  transform: translateY(15%) scale(0.95);
+  z-index: -1;
+}
+
+</style>
+<body>
+    <h1 class="netflix">NETFLIX</h1>
+    <h2 class="firstLetter">Amazing</h2>
+    <button class="rainbow button">Tropical taste</button>
+
+    <div class="example-container">
+      <h3  class="sideways-text">Sideways lr</h3>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor harum eius illum, officiis voluptatibus inventore voluptatem vero qui voluptatum minus rerum! Provident impedit quas aut!</p>
+    </div>
+    <div class="gradient-object"></div>
+</body>
+</html>
