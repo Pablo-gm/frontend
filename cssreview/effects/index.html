@@ -9,6 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <style>
+
+:root {
+  --menu-width: 2rem;
+  --menu-height: 2rem;
+  --menu-thickness: 2px;
+  --menu-color: #FFF;
+  --menu-active-color: #ff8A00;
+}
+
 body {
     font-family: 'Fira Sans', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     background-color: rgb(53, 49, 49);
@@ -86,6 +95,64 @@ body {
   z-index: -1;
 }
 
+.menu-grid{
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  width: 10rem;
+}
+
+.space{
+  margin: 5rem;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  width:  var(--menu-width);
+  height: var(--menu-height);
+  padding: .5rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.menu   span {
+  width: 100%;
+  height: var(--menu-thickness);
+  background-color: var(--menu-color);
+  transition: all 0.25s;
+}
+
+.menu.activated span {
+  background-color: var(--menu-active-color);
+}
+
+.menu--times.activated span:nth-child(1) {
+  transform: translateY(calc((var(--menu-height) / 2) - var(--menu-thickness))) rotate(45deg);
+}
+
+.menu--times.activated span:nth-child(2) {
+  transform: translateX(5rem);
+}
+
+.menu--times.activated span:nth-child(3) {
+  transform: translateY(calc((var(--menu-height) / -2))) rotate(-45deg);
+}
+
+.menu--fade.activated span:nth-child(1) {
+  transform: translateY(calc((var(--menu-height) / 2) - var(--menu-thickness))) rotate(45deg);
+}
+
+.menu--fade.activated span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu--fade.activated span:nth-child(3) {
+  transform: translateY(calc((var(--menu-height) / -2))) rotate(-45deg);
+}
+
 </style>
 <body>
     <h1 class="netflix">NETFLIX</h1>
@@ -97,5 +164,31 @@ body {
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor harum eius illum, officiis voluptatibus inventore voluptatem vero qui voluptatum minus rerum! Provident impedit quas aut!</p>
     </div>
     <div class="gradient-object"></div>
+
+    <div class="space menu-grid">
+      <div class="menu menu--times">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="menu menu--fade">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
 </body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var menus = document.querySelectorAll('.menu');
+
+    menus.forEach(function(button){
+      button.addEventListener('click', function(){
+        this.classList.toggle('activated');
+      })
+    })
+  });
+</script>
 </html>
