@@ -1,194 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <style>
+  :root {
+    --menu-width: 2rem;
+    --menu-height: 2rem;
+    --menu-thickness: 2px;
+    --menu-color: #FFF;
+    --menu-active-color: #ff8A00;
+  }
 
-:root {
-  --menu-width: 2rem;
-  --menu-height: 2rem;
-  --menu-thickness: 2px;
-  --menu-color: #FFF;
-  --menu-active-color: #ff8A00;
-}
-
-body {
+  body {
     font-family: 'Fira Sans', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     background-color: rgb(53, 49, 49);
-}
-.netflix {
+  }
+
+  .netflix {
     color: white;
     -webkit-text-stroke: 5px crimson;
     text-stroke: 5px crimson;
     font-size: 8rem;
     color: transparent;
-}
+  }
 
-.firstLetter{
+  .firstLetter {
     color: rgb(235, 231, 223);
     font-size: 3rem;
     letter-spacing: .05em;
-}
+  }
 
-.firstLetter::first-letter{
-  font-size: 4rem;
-  color:#ff8A00;
-}
+  .firstLetter::first-letter {
+    font-size: 4rem;
+    color: #ff8A00;
+  }
 
-.button{
+  .button {
     padding: 0.75rem 1rem;
     background: #ebb;
     border-radius: 6rem;
     font-weight: 700;
     line-height: 1.2;
     border: none;
-}
-
-.rainbow{
-  animation: rainbow-animation 2000ms linear infinite;
-}
-
-@keyframes rainbow-animation {
-  to{
-    filter: hue-rotate(0deg);
   }
- from{
-    filter: hue-rotate(360deg);
+
+  .rainbow {
+    animation: rainbow-animation 2000ms linear infinite;
   }
-}
 
-.example-container{
-  color: #EAEAEA;
-  display: flex;
-  width: min(100%, 400px);
-}
+  @keyframes rainbow-animation {
+    to {
+      filter: hue-rotate(0deg);
+    }
 
-.sideways-text{
-  writing-mode: sideways-lr;
-  text-align: center;
-  color: #FF9422;
-}
+    from {
+      filter: hue-rotate(360deg);
+    }
+  }
 
-.gradient-object{
-  width: 250px;
-  height: 250px;
-  margin: 5rem;
-  border-radius: 2rem;
-  position: relative;
-  background-image: linear-gradient(to bottom right, rgb(48, 204, 243), rgb(71, 243, 149));
-}
+  .example-container {
+    color: #EAEAEA;
+    display: flex;
+    width: min(100%, 400px);
+  }
 
-.gradient-object::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: linear-gradient(to bottom right, rgb(48, 204, 243), rgb(71, 243, 149));
-  filter: blur(1.5rem) brightness(1.5);
-  transform: translateY(15%) scale(0.95);
-  z-index: -1;
-}
+  .sideways-text {
+    writing-mode: sideways-lr;
+    text-align: center;
+    color: #FF9422;
+  }
 
-.menu-grid{
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
-  width: 10rem;
-}
+  .gradient-object {
+    width: 250px;
+    height: 250px;
+    margin: 5rem;
+    border-radius: 2rem;
+    position: relative;
+    background-image: linear-gradient(to bottom right, rgb(48, 204, 243), rgb(71, 243, 149));
+  }
 
-.space{
-  margin: 5rem;
-}
+  .gradient-object::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: linear-gradient(to bottom right, rgb(48, 204, 243), rgb(71, 243, 149));
+    filter: blur(1.5rem) brightness(1.5);
+    transform: translateY(15%) scale(0.95);
+    z-index: -1;
+  }
 
-.menu {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-between;
-  width:  var(--menu-width);
-  height: var(--menu-height);
-  padding: .5rem;
-  cursor: pointer;
-  overflow: hidden;
-}
+  .menu-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    width: 10rem;
+  }
 
-.menu   span {
-  width: 100%;
-  height: var(--menu-thickness);
-  background-color: var(--menu-color);
-  transition: all 0.25s;
-}
+  .space {
+    margin: 5rem;
+  }
 
-.menu.activated span {
-  background-color: var(--menu-active-color);
-}
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    width: var(--menu-width);
+    height: var(--menu-height);
+    padding: .5rem;
+    cursor: pointer;
+    overflow: hidden;
+  }
 
-.menu--times.activated span:nth-child(1) {
-  transform: translateY(calc((var(--menu-height) / 2) - var(--menu-thickness))) rotate(45deg);
-}
+  .menu span {
+    width: 100%;
+    height: var(--menu-thickness);
+    background-color: var(--menu-color);
+    transition: all 0.25s;
+  }
 
-.menu--times.activated span:nth-child(2) {
-  transform: translateX(5rem);
-}
+  .menu.activated span {
+    background-color: var(--menu-active-color);
+  }
 
-.menu--times.activated span:nth-child(3) {
-  transform: translateY(calc((var(--menu-height) / -2))) rotate(-45deg);
-}
+  .menu--times.activated span:nth-child(1) {
+    transform: translateY(calc((var(--menu-height) / 2) - var(--menu-thickness))) rotate(45deg);
+  }
 
-.menu--fade.activated span:nth-child(1) {
-  transform: translateY(calc((var(--menu-height) / 2) - var(--menu-thickness))) rotate(45deg);
-}
+  .menu--times.activated span:nth-child(2) {
+    transform: translateX(5rem);
+  }
 
-.menu--fade.activated span:nth-child(2) {
-  opacity: 0;
-}
+  .menu--times.activated span:nth-child(3) {
+    transform: translateY(calc((var(--menu-height) / -2))) rotate(-45deg);
+  }
 
-.menu--fade.activated span:nth-child(3) {
-  transform: translateY(calc((var(--menu-height) / -2))) rotate(-45deg);
-}
+  .menu--fade.activated span:nth-child(1) {
+    transform: translateY(calc((var(--menu-height) / 2) - var(--menu-thickness))) rotate(45deg);
+  }
 
+  .menu--fade.activated span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu--fade.activated span:nth-child(3) {
+    transform: translateY(calc((var(--menu-height) / -2))) rotate(-45deg);
+  }
 </style>
+
+<style>
+  .transform-container {
+    display: grid;
+    grid-template: repeat(3, 100px)/repeat(3, 100px);
+    grid-gap: 1em;
+    margin: 150px;
+  }
+
+  .origin {
+    width: 1em;
+    height: 1em;
+    font-size: 13vmin;
+    position: relative;
+    background: rgba(0, 0, 0, 0.4);
+    -webkit-animation: spin 10s linear infinite;
+    animation: spin 10s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    50% {
+      transform: rotate(180deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    50% {
+      transform: rotate(180deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .origin:before,
+  .origin:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: solid 1px red;
+    transform-origin: inherit;
+  }
+
+  .origin:before {
+    -webkit-animation: inherit;
+    animation: inherit;
+    animation-direction: reverse;
+    text-shadow: 0 1px 0 #000;
+    font-size: 0.11em;
+    font-family: monospace;
+    padding: 0.2em;
+    content: attr(style);
+    display: flex;
+    text-align: center;
+    word-break: keep-all;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .origin:after {
+    background: red;
+    transform: scale(0.1);
+  }
+
+
+
+  .origin {
+    background: #3b2c85;
+    background: rgba(137, 219, 30, 0.3);
+  }
+
+  .origin:before {
+    border: solid 1px #971629;
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 5;
+  }
+
+  .origin:after {
+    background: #db3951;
+  }
+</style>
+
 <body>
-    <h1 class="netflix">NETFLIX</h1>
-    <h2 class="firstLetter">Amazing</h2>
-    <button class="rainbow button">Tropical taste</button>
+  <h1 class="netflix">NETFLIX</h1>
+  <h2 class="firstLetter">Amazing</h2>
+  <button class="rainbow button">Tropical taste</button>
 
-    <div class="example-container">
-      <h3  class="sideways-text">Sideways lr</h3>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor harum eius illum, officiis voluptatibus inventore voluptatem vero qui voluptatum minus rerum! Provident impedit quas aut!</p>
+  <div class="example-container">
+    <h3 class="sideways-text">Sideways lr</h3>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor harum eius illum, officiis voluptatibus inventore
+      voluptatem vero qui voluptatum minus rerum! Provident impedit quas aut!</p>
+  </div>
+  <div class="gradient-object"></div>
+
+  <div class="space menu-grid">
+    <div class="menu menu--times">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <div class="gradient-object"></div>
 
-    <div class="space menu-grid">
-      <div class="menu menu--times">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <div class="menu menu--fade">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    <div class="menu menu--fade">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  </div>
+
+  <h3>Transform Origin</h3>
+  <div class="transform-container">
+
+
+    <div class="origin" style="transform-origin: top left"></div>
+    <div class="origin" style="transform-origin: top center"></div>
+    <div class="origin" style="transform-origin: top right"></div>
+
+    <div class="origin" style="transform-origin: center left"></div>
+    <div class="origin" style="transform-origin: center center"></div>
+    <div class="origin" style="transform-origin: center right"></div>
+
+    <div class="origin" style="transform-origin: bottom left"></div>
+    <div class="origin" style="transform-origin: bottom center"></div>
+    <div class="origin" style="transform-origin: bottom right"></div>
+
+
+  </div>
 </body>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener('DOMContentLoaded', function () {
     var menus = document.querySelectorAll('.menu');
 
-    menus.forEach(function(button){
-      button.addEventListener('click', function(){
+    menus.forEach(function (button) {
+      button.addEventListener('click', function () {
         this.classList.toggle('activated');
       })
     })
   });
 </script>
+
 </html>
