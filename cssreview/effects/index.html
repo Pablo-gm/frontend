@@ -246,6 +246,65 @@
   }
 </style>
 
+<style>
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    max-width: 15rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    border: 2px solid #c9c9c9;
+  }
+
+  .mr-1 {
+    margin-right: 1rem;
+  }
+
+  .mb-025 {
+    margin-bottom: .25rem;
+  }
+
+  .skeleton-animation {
+    background: linear-gradient(90deg, #ececec, #d5d5d5, #ececec);
+    background-size: 50rem 10rem;
+    animation: leftToRightWave 2s infinite ease-out;
+  }
+
+  .skeleton-text {
+    width: 6rem;
+    height: 1rem;
+  }
+  
+  .skeleton-avatar{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+  }
+
+  .w-8 {
+    width: 8rem;
+  }
+
+  @keyframes leftToRightWave {
+    0% {
+      background-position: -50rem 0;
+    }
+
+    100% {
+      background-position: 50rem 0;
+    }
+  }
+</style>
+
 <body>
   <h1 class="netflix">NETFLIX</h1>
   <h2 class="firstLetter">Amazing</h2>
@@ -274,8 +333,6 @@
 
   <h3>Transform Origin</h3>
   <div class="transform-container">
-
-
     <div class="origin" style="transform-origin: top left"></div>
     <div class="origin" style="transform-origin: top center"></div>
     <div class="origin" style="transform-origin: top right"></div>
@@ -287,8 +344,16 @@
     <div class="origin" style="transform-origin: bottom left"></div>
     <div class="origin" style="transform-origin: bottom center"></div>
     <div class="origin" style="transform-origin: bottom right"></div>
+  </div>
 
-
+  <div class="cards-container">
+    <div class="card">
+      <div class="skeleton-avatar skeleton-animation mr-1"></div>
+      <div>
+        <div class="skeleton-text skeleton-animation mb-025"></div>
+        <div class="skeleton-text skeleton-animation w-8"></div>
+      </div>
+    </div>
   </div>
 </body>
 
