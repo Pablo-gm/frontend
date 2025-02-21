@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting people</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+</head>
+
+<body>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">People:</h1>
+                <p class="lead text-body-secondary" id="counter">0</p>
+                <p>
+                    <button class="btn btn-primary my-2" id="increment-btn">Count + 1</button>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 container">
+        <div class="row py-lg-5 justify-content-center">
+            <div class="col-lg-6 col-md-8 ">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Remove</th>
+                      </tr>
+                    </thead>
+                    <tbody id="books-body">
+
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-lg-4 col-md-4 ">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate="">
+                            <div class="row g-3">
+                              <div class="col-12">
+                                <label for="author" class="form-label">Author</label>
+                                  <input type="text" class="form-control" id="author" placeholder="Author" required="">
+                                    <div class="invalid-feedback">
+                                        Author is invalid.
+                                    </div>
+
+                              </div>
+                  
+                              <div class="col-12">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" placeholder="Title" required="">
+                                <div class="invalid-feedback">
+                                  Please enter a valid title.
+                                </div>
+                              </div>
+
+                            </div>
+                            <button class="w-100 btn btn-primary btn-lg mt-3" type="submit">Add book</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+<script>
+    const btn = document.getElementById('increment-btn');
+    const counterText = document.getElementById('counter');
+    let counter = 0;
+
+    btn.addEventListener('click', function(){
+        counter = counter + 1;
+        counterText.textContent = counter;
+    })
+
+
+    function Book(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.info = function() {
+            return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'readed' : 'not read yet'} `;
+        }
+    }
+
+    let theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', '295', false);
+    console.log(theHobbit.info());
+
+    const tbody = document.getElementById('books-body');
+    let myLibrary = [];
+
+    function BookHW(author, title) {
+        this.author = author;
+        this.title = title;
+        this.read = false;
+    }
+
+    function addBookToLibrary(ar, author, title) {
+    // take params, create a book then store it in the array
+        ar.push(new BookHW(author, title));
+    }
+
+    function populateBooks() {
+        let rows = ``;
+        myLibrary.forEach((bk, index) => {
+            rows += `
+                <tr>
+                    <td>${index}</td>
+                    <td>${bk.author}</td>
+                    <td>${bk.title}</td>
+                    <td>${bk.read ? 'Readed' : 'Not readed'}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-index=${index}>Remove</button>
+                        ${bk.read ? `<button type="button" class="btn btn-secondary" data-index=${index}>Not readed</button>` : `<button type="button" class="btn btn-dark" data-index=${index}>Read</button>`}    
+                    </td>
+                </tr>
+            `
+        });
+        tbody.innerHTML = rows;
+    }
+
+    function removeBookByIndex(i) {
+        myLibrary = myLibrary.filter((bk, index) => index != i);
+    }
+
+    function toggleStatusByIndex(i) {
+        myLibrary[i].read = !myLibrary[i].read;
+        populateBooks();
+    }
+
+    addBookToLibrary(myLibrary, 'Author 1', 'Book 1');
+    addBookToLibrary(myLibrary, 'Arthur Golden', 'Memoirs of a Geisha');
+    console.log(myLibrary);
+
+    populateBooks();
+
+    tbody.addEventListener('click', function(e){
+        if(e.target.matches('button.btn-danger')) {
+            console.log(e.target.dataset.index);
+            removeBookByIndex(e.target.dataset.index);
+            populateBooks();
+        }
+        if(e.target.matches('button.btn-dark, button.btn-secondary')) {
+            console.log(e.target.dataset.index);
+            toggleStatusByIndex(e.target.dataset.index);
+            populateBooks();
+        }
+    })
+
+
+</script>
+
+</html>
