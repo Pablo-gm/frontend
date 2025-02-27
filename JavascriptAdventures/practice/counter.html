@@ -26,44 +26,63 @@
             <div class="col-lg-6 col-md-8 ">
                 <table class="table">
                     <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Remove</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Pages</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Remove</th>
+                        </tr>
                     </thead>
                     <tbody id="books-body">
 
                     </tbody>
-                  </table>
+                </table>
             </div>
             <div class="col-lg-4 col-md-4 ">
                 <div class="card">
                     <div class="card-body">
-                        <form class="needs-validation" novalidate="">
+                        <form class="needs-validation" novalidate="" id="booksForm">
                             <div class="row g-3">
-                              <div class="col-12">
-                                <label for="author" class="form-label">Author</label>
-                                  <input type="text" class="form-control" id="author" placeholder="Author" required="">
+                                <div class="col-12">
+                                    <label for="author" class="form-label">Author</label>
+                                    <input type="text" class="form-control" id="author" placeholder="Author"
+                                        required="">
                                     <div class="invalid-feedback">
                                         Author is invalid.
                                     </div>
 
-                              </div>
-                  
-                              <div class="col-12">
-                                <label for="title" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="title" placeholder="Title" required="">
-                                <div class="invalid-feedback">
-                                  Please enter a valid title.
                                 </div>
-                              </div>
+
+                                <div class="col-12">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="title" placeholder="Title" required="">
+                                    <div class="invalid-feedback">
+                                        Please enter a valid title.
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="pages" class="form-label">Pages</label>
+                                    <input type="number" class="form-control" id="pages" placeholder="Pages" required="" step="1">
+                                    <div class="invalid-feedback">
+                                        Please enter a valid page number.
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="readed">
+                                        <label class="form-check-label" for="readed">
+                                          I have readed this book
+                                        </label>
+                                    </div>
+                                </div>
 
                             </div>
                             <button class="w-100 btn btn-primary btn-lg mt-3" type="submit">Add book</button>
-                          </form>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -76,18 +95,18 @@
     const counterText = document.getElementById('counter');
     let counter = 0;
 
-    btn.addEventListener('click', function(){
+    btn.addEventListener('click', function () {
         counter = counter + 1;
         counterText.textContent = counter;
     })
 
 
-    function Book(title, author, pages, read){
+    function Book(title, author, pages, read) {
         this.title = title;
         this.author = author;
         this.pages = pages;
         this.read = read;
-        this.info = function() {
+        this.info = function () {
             return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'readed' : 'not read yet'} `;
         }
     }
@@ -96,17 +115,19 @@
     console.log(theHobbit.info());
 
     const tbody = document.getElementById('books-body');
+    const form = document.getElementById('booksForm');
     let myLibrary = [];
 
-    function BookHW(author, title) {
+    function BookHW(author, title, pages = 200, read = false) {
         this.author = author;
         this.title = title;
-        this.read = false;
+        this.pages = Number(pages);
+        this.read = read;
     }
 
-    function addBookToLibrary(ar, author, title) {
-    // take params, create a book then store it in the array
-        ar.push(new BookHW(author, title));
+    function addBookToLibrary(ar, author, title, pages, read) {
+        // take params, create a book then store it in the array
+        ar.push(new BookHW(author, title, pages, read));
     }
 
     function populateBooks() {
@@ -117,6 +138,7 @@
                     <td>${index}</td>
                     <td>${bk.author}</td>
                     <td>${bk.title}</td>
+                    <td>${bk.pages}</td>
                     <td>${bk.read ? 'Readed' : 'Not readed'}</td>
                     <td>
                         <button type="button" class="btn btn-danger" data-index=${index}>Remove</button>
@@ -143,13 +165,28 @@
 
     populateBooks();
 
-    tbody.addEventListener('click', function(e){
-        if(e.target.matches('button.btn-danger')) {
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const author = document.getElementById('author').value;
+        const title = document.getElementById('title').value;
+        const pages = document.getElementById('pages').value;
+        const readed = document.getElementById('readed').checked;
+
+        addBookToLibrary(myLibrary, author, title, pages, readed);
+        populateBooks();
+
+        form.reset();
+
+    })
+
+    tbody.addEventListener('click', function (e) {
+        if (e.target.matches('button.btn-danger')) {
             console.log(e.target.dataset.index);
             removeBookByIndex(e.target.dataset.index);
             populateBooks();
         }
-        if(e.target.matches('button.btn-dark, button.btn-secondary')) {
+        if (e.target.matches('button.btn-dark, button.btn-secondary')) {
             console.log(e.target.dataset.index);
             toggleStatusByIndex(e.target.dataset.index);
             populateBooks();
