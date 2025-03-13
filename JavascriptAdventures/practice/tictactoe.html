@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+    <style>
+        .gameboard td {
+            width: 8rem;
+            height: 8rem;
+            font-size: 6rem;
+            text-align: center;
+            line-height: 8rem;
+            padding: 0;
+        }
+
+        td.playerOne {
+            color: #2e23cc;
+        }
+
+        td.playerTwo {
+            color: #cc7523;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <button class="btn btn-primary">Start</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered w-auto gameboard my-4 m-auto" id="board-table">
+                    <thead>
+                        <tr>
+                            <th colspan="3" class="text-center">Tic Tac Toe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="alert alert-light" role="alert" id="displayAlert">
+                    New game ready!
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    const UI = (function(){
+        const selectors = {
+            alert: '#displayAlert',
+            tableTd: '#board-table td'
+        }
+
+        const UI_CONSTANTS = {
+            playerOneTd: 'playerOne',
+            playerTwoTd: 'playerTwo',
+        }
+
+        return {
+            markTd: function(player, tdIndex){
+                const tdClass = player === 1 ? UI_CONSTANTS.playerOneTd : UI_CONSTANTS.playerTwoTd;
+                const tempTd = document.querySelectorAll(selectors.tableTd)[tdIndex];
+                tempTd.innerText = player === 1 ? 'X' : 'O';
+                tempTd.classList = tdClass;
+            },
+            displayError: function(message){
+                document.querySelector(selectors.alert).classList = 'alert alert-danger';
+                document.querySelector(selectors.alert).innerText = message;
+            }
+        }
+    })();
+
+    const Gameboard = (function(UI){
+
+        const boardState = {
+            isPlaying: false,
+            turn: 0,
+            currentPlayer: 1,
+            board: new Array(9).fill(0) 
+        }
+
+        return {
+            setMark: function(position){
+                if(boardState.board[position] === 0){
+                    boardState.board[position] = boardState.currentPlayer;
+                    UI.markTd(boardState.currentPlayer, position);
+                }else{
+                    UI.displayError('Position is already filled')
+                }
+            },
+            setPlaying: function(playing){
+                boardState.isPlaying = playing ? true : false; 
+            },
+            switchPlayer: function(){
+                boardState.currentPlayer = boardState.currentPlayer === 1 ? 2 : 1; 
+            },
+            printState: function(){
+                console.log(boardState);
+            }
+        }
+
+    })(UI);
+</script>
+</html>
