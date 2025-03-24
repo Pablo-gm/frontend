@@ -28,14 +28,14 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 text-center">
-                <button class="btn btn-primary">Start</button>
+                <button class="btn btn-primary" id="start">New game</button>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <table class="table table-bordered w-auto gameboard my-4 m-auto" id="board-table">
                     <thead>
-                        <tr>
+                        <tr class="table-primary">
                             <th colspan="3" class="text-center">Tic Tac Toe</th>
                         </tr>
                     </thead>
@@ -61,7 +61,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-6">
-                <div class="alert alert-light" role="alert" id="displayAlert">
+                <div class="alert alert-secondary" role="alert" id="displayAlert">
                     New game ready!
                 </div>
             </div>
@@ -73,7 +73,8 @@
     const UI = (function(){
         const selectors = {
             alert: '#displayAlert',
-            tableTd: '#board-table td'
+            tableTd: '#board-table td',
+            startBtn: '#start',
         }
 
         const UI_CONSTANTS = {
@@ -82,15 +83,43 @@
         }
 
         return {
+            getSelectors: function(){
+                return selectors;
+            },
+            startGame: function(){
+
+            },
             markTd: function(player, tdIndex){
                 const tdClass = player === 1 ? UI_CONSTANTS.playerOneTd : UI_CONSTANTS.playerTwoTd;
                 const tempTd = document.querySelectorAll(selectors.tableTd)[tdIndex];
                 tempTd.innerText = player === 1 ? 'X' : 'O';
                 tempTd.classList = tdClass;
             },
+            clearBoard: function(){
+                const tempTds = document.querySelectorAll(selectors.tableTd).forEach(tempTd =>{
+                    tempTd.innerText = '';
+                    tempTd.classList = '';
+                });
+            },
             displayError: function(message){
                 document.querySelector(selectors.alert).classList = 'alert alert-danger';
                 document.querySelector(selectors.alert).innerText = message;
+            },
+            displayPrimary: function(message){
+                document.querySelector(selectors.alert).classList = 'alert alert-primary';
+                document.querySelector(selectors.alert).innerText = message;
+            },
+            displaySuccess: function(message){
+                document.querySelector(selectors.alert).classList = 'alert alert-success';
+                document.querySelector(selectors.alert).innerText = message;
+            },
+            displaySecondary: function(message){
+                document.querySelector(selectors.alert).classList = 'alert alert-secondary';
+                document.querySelector(selectors.alert).innerText = message;
+            },
+            displayPlayerTurn: function(player){
+                document.querySelector(selectors.alert).classList = `alert alert-${player === 1 ? 'info' : 'warning'}`;
+                document.querySelector(selectors.alert).innerText = `Player ${player} turn`;
             }
         }
     })();
@@ -104,20 +133,91 @@
             board: new Array(9).fill(0) 
         }
 
-        return {
-            setMark: function(position){
+        const restartBoard = function(){
+            boardState.isPlaying = true;
+            boardState.board = new Array(9).fill(0);
+            boardState.turn = 0;
+            boardState.currentPlayer = 1;
+            UI.displayPrimary('New game started');
+            UI.clearBoard();
+            
+        }
+
+        const loadEventListeners = function(){
+            const UIselectors = UI.getSelectors();
+
+            // Start button
+            document.querySelector(UIselectors.startBtn).addEventListener('click', restartBoard);
+
+            // TD clicks
+            document.querySelectorAll(UIselectors.tableTd).forEach((td, index) => {
+                td.addEventListener('click', (e) => {
+                    setMark(index);
+                })
+            });
+        }
+
+        const checkWin = function(position){
+            if(boardState.turn > 4){
+                const mark = boardState.board[position];
+
+                // Full column win
+                if (mark === boardState.board[(position + 3) % 9] && mark === boardState.board[(position + 6) % 9]){
+                    return true;
+                }
+
+                // Full row win
+                const rowOffset = Math.floor(position / 3)*3;
+                const [col1, col2, col3] = [rowOffset, rowOffset + 1, rowOffset +2 ];
+
+                if(boardState.board[col1] === boardState.board[col2] && boardState.board[col2] === boardState.board[col3] ){
+                    return true;
+                }
+
+                // Diagonal win
+                if(position % 2 === 0 && mark === boardState.board[4] && ( (mark === boardState.board[0] && mark === boardState.board[8] ) || (mark === boardState.board[2] && mark === boardState.board[6] ))){
+                    return true;
+                } 
+            }
+
+            return false;
+        }
+
+        const setMark = function(position){
+            if(boardState.isPlaying){
                 if(boardState.board[position] === 0){
                     boardState.board[position] = boardState.currentPlayer;
                     UI.markTd(boardState.currentPlayer, position);
+                    boardState.turn = boardState.turn + 1;
+
+                    const checking = checkWin(position);
+                    if(checking){
+                        // win
+                        UI.displaySuccess(`Player ${boardState.currentPlayer} Wins!`);
+                        boardState.isPlaying = 0;
+                    }else if(boardState.turn > 8){
+                        // draw
+                        UI.displaySecondary(`Draw!`);
+                        boardState.isPlaying = 0;
+                    }else{
+                        // keep playing
+                        switchPlayer();
+                        UI.displayPlayerTurn(boardState.currentPlayer);
+                    }
                 }else{
                     UI.displayError('Position is already filled')
                 }
-            },
-            setPlaying: function(playing){
-                boardState.isPlaying = playing ? true : false; 
-            },
-            switchPlayer: function(){
-                boardState.currentPlayer = boardState.currentPlayer === 1 ? 2 : 1; 
+            }
+
+        }
+
+        const switchPlayer = function(){
+            boardState.currentPlayer = boardState.currentPlayer === 1 ? 2 : 1; 
+        }
+
+        return {
+            loadListeners: function(){
+                loadEventListeners();
             },
             printState: function(){
                 console.log(boardState);
@@ -125,5 +225,7 @@
         }
 
     })(UI);
+
+    Gameboard.loadListeners();
 </script>
 </html>
