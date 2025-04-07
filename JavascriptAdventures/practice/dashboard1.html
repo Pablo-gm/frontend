@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard practice</title>
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+    <script src=" ../bootstrap/bootstrap.bundle.min.js"></script>
     <style>
         .page {
             display: flex;
@@ -15,22 +16,47 @@
 
         .page__header {
             padding-inline-start: 16rem;
+            background-color: var(--header-bg);
         }
+
+        .page__aside {
+            width: 16rem;
+            background-color: var(--header-bg);
+            position: fixed;
+            z-index: 103;
+            transition: all 0.1s linear;
+        }
+
+        .form-control{
+            padding: .5rem;
+        }
+
+        [data-bs-theme=light] {
+            --header-bg: #fff;
+        }
+
     </style>
 </head>
 
 <body class="bg-body-tertiary">
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+        <symbol id="languages">
+            <path fill="currentColor" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM4 12c0-.899.156-1.762.431-2.569L6 11l2 2v2l2 2 1 1v1.931C7.061 19.436 4 16.072 4 12zm14.33 4.873C17.677 16.347 16.687 16 16 16v-1a2 2 0 0 0-2-2h-4v-3a2 2 0 0 0 2-2V7h1a2 2 0 0 0 2-2v-.411C17.928 5.778 20 8.65 20 12a7.947 7.947 0 0 1-1.67 4.873z"></path>
+        </symbol>
+    </svg>
     <div class="page">
         <header class="sticky page__header">
-            <nav class="navbar navbar-expand-lg bg-light">
+            <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <div class="d-flex">
                         <a href="javascript:void(0)" class="nav-item nav-link px-0 me-3 align-self-center">
                             <span class="navbar-toggler-icon"></span>
                         </a>
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        <form class="input-group" role="search">
+                            <div class="input-group">
+                                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-secondary" type="button" id="button-search">Search</button>
+                            </div>
                         </form>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
@@ -40,9 +66,21 @@
                     </div>
 
                     <div class="collapse navbar-collapse" id="navbarScroll">
-                        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll"
-                            style="--bs-scroll-height: 100px;">
+                        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                            <li class="nav-item col-6 col-lg-auto dropdown">
+                                <button class="nav-link py-2 px-0 px-lg-2" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><use href="#languages" /></svg>
+                                    <small class="d-lg-none ms-2">Language</small>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item active" href="#">English</a></li>
+                                    <li><a class="dropdown-item" href="#">Spanish</a></li>
+                                    <li><a class="dropdown-item" href="#">French</a></li>
+                                </ul>
+                            </li>
+
                             <li class="nav-item">
+                                
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
@@ -71,16 +109,24 @@
             </nav>
         </header>
 
-        <aside>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
+        <aside class="page__aside sticky">
+            <ul class="list-group">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+              </ul>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
         </aside>
         <div class="page-content">
 
