@@ -21,13 +21,50 @@
 
         .page__aside {
             width: 16rem;
+            overflow: hidden;
             background-color: var(--header-bg);
             position: fixed;
             z-index: 103;
             transition: all 0.1s linear;
         }
 
-        .form-control{
+        .page__aside .nav-item{
+            width: 100%;
+            position: relative;
+        }
+
+        .page__aside .nav-link {
+            min-height: 3rem;
+            padding: 0.75rem 1rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .page__aside .nav-link>div:not(.badge) {
+            overflow: hidden;
+            line-height: 1.375rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .page__aside .bi {
+            flex-grow: 0;
+            flex-shrink: 0;
+            block-size: 1.375rem;
+            font-size: 1.375rem;
+            inline-size: 1.375rem;
+            margin-inline-end: .5rem;
+        }
+
+        .page__aside .collapse-icon{
+            position: absolute;
+            right: 1rem;
+            margin-inline-end: 0;
+        }
+
+        .form-control {
             padding: .5rem;
         }
 
@@ -35,13 +72,31 @@
             --header-bg: #fff;
         }
 
+        .bi {
+            vertical-align: text-bottom;
+            fill: currentColor;
+        }
+
+        .collapse-icon {
+            transition: transform .35s ease;
+        }
+
+        .collapsed .collapse-icon {
+            transform: rotate(90deg);
+        }
     </style>
 </head>
 
 <body class="bg-body-tertiary">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="languages">
-            <path fill="currentColor" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM4 12c0-.899.156-1.762.431-2.569L6 11l2 2v2l2 2 1 1v1.931C7.061 19.436 4 16.072 4 12zm14.33 4.873C17.677 16.347 16.687 16 16 16v-1a2 2 0 0 0-2-2h-4v-3a2 2 0 0 0 2-2V7h1a2 2 0 0 0 2-2v-.411C17.928 5.778 20 8.65 20 12a7.947 7.947 0 0 1-1.67 4.873z"></path>
+            <path fill="currentColor"
+                d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM4 12c0-.899.156-1.762.431-2.569L6 11l2 2v2l2 2 1 1v1.931C7.061 19.436 4 16.072 4 12zm14.33 4.873C17.677 16.347 16.687 16 16 16v-1a2 2 0 0 0-2-2h-4v-3a2 2 0 0 0 2-2V7h1a2 2 0 0 0 2-2v-.411C17.928 5.778 20 8.65 20 12a7.947 7.947 0 0 1-1.67 4.873z">
+            </path>
+        </symbol>
+        <symbol id="chevronRight">
+            <path fill="currentColor" d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z">
+            </path>
         </symbol>
     </svg>
     <div class="page">
@@ -55,7 +110,8 @@
                         <form class="input-group" role="search">
                             <div class="input-group">
                                 <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-secondary" type="button" id="button-search">Search</button>
+                                <button class="btn btn-outline-secondary" type="button"
+                                    id="button-search">Search</button>
                             </div>
                         </form>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -66,10 +122,14 @@
                     </div>
 
                     <div class="collapse navbar-collapse" id="navbarScroll">
-                        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll"
+                            style="--bs-scroll-height: 100px;">
                             <li class="nav-item col-6 col-lg-auto dropdown">
-                                <button class="nav-link py-2 px-0 px-lg-2" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><use href="#languages" /></svg>
+                                <button class="nav-link py-2 px-0 px-lg-2" data-bs-toggle="dropdown"
+                                    aria-expanded="false" data-bs-offset="10,20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <use href="#languages" />
+                                    </svg>
                                     <small class="d-lg-none ms-2">Language</small>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -80,7 +140,7 @@
                             </li>
 
                             <li class="nav-item">
-                                
+
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
@@ -110,23 +170,98 @@
         </header>
 
         <aside class="page__aside sticky">
+
+            <ul class="nav nav-pills flex-column p-3 mb-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" aria-current="page">
+                        <svg class="bi pe-none me-2" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                            <use xlink:href="#languages"></use>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link link-body-emphasis">
+                        <svg class="bi pe-none me-2" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                            <use xlink:href="#languages"></use>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <button data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"
+                        class="nav-link text-start w-100 pe-5">
+                        <svg class="bi pe-none me-2" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                            <use xlink:href="#languages"></use>
+                        </svg>
+                        <div class="text-truncate">
+                            Home Home2 Home 3 Home 4
+                        </div>
+                        <svg class="bi pe-none  collapse-icon" width="20" height="20" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <use xlink:href="#chevronRight"></use>
+                        </svg>
+                    </button>
+                    <div class="collapse show" id="home-collapse" style="">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+                            <li>
+                                <a href="#" class="nav-link">
+                                    <svg class="bi pe-none me-2" width="20" height="20" viewBox="0 0 24 24"
+                                        aria-hidden="true">
+                                        <use xlink:href="#languages"></use>
+                                    </svg>
+                                    Overview
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li>
+                    <a href="#" class="nav-link link-body-emphasis">
+                        <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+                            <use xlink:href="#table"></use>
+                        </svg>
+                        Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-body-emphasis">
+                        <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+                            <use xlink:href="#grid"></use>
+                        </svg>
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-body-emphasis">
+                        <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+                            <use xlink:href="#people-circle"></use>
+                        </svg>
+                        Customers
+                    </a>
+                </li>
+            </ul>
+
             <ul class="list-group">
                 <li class="list-group-item">An item</li>
                 <li class="list-group-item">A second item</li>
                 <li class="list-group-item">A third item</li>
                 <li class="list-group-item">A fourth item</li>
                 <li class="list-group-item">And a fifth one</li>
-              </ul>
+            </ul>
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown button
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Dropdown button
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
-              </div>
+            </div>
         </aside>
         <div class="page-content">
 
